@@ -32,5 +32,13 @@ namespace CondominioDevAPI.Controllers
             if (created) return StatusCode(201, habitante);
             else return StatusCode(400, "Já há um habitante com este CPF");
         }
+
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult GetAll()
+        {
+            var habitantes = _habitanteAppService.GetAll();
+            return Ok(habitantes);
+        }
     }
 }
