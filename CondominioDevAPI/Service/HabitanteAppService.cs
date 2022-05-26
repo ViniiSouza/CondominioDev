@@ -45,9 +45,10 @@ namespace CondominioDevAPI.Service
             return _repository.GetById(id);
         }
 
-        public IEnumerable<Habitante> GetAll()
+        public IEnumerable<HabitanteGetDTO> GetAll()
         {
-            return _repository.GetAll();
+            var habitantes = _repository.GetAll();
+            return _mapper.Map<IEnumerable<HabitanteGetDTO>>(habitantes);
         }
     }
 }
