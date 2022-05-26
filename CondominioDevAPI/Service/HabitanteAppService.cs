@@ -50,5 +50,11 @@ namespace CondominioDevAPI.Service
             var habitantes = _repository.GetAll();
             return _mapper.Map<IEnumerable<HabitanteGetDTO>>(habitantes);
         }
+
+        public IEnumerable<HabitanteGetDTO> GetByName(string nome)
+        {
+            var habitantes = _repository.GetByName(nome);
+            return _mapper.Map<IEnumerable<HabitanteGetDTO>>(habitantes);
+        }
     }
 }

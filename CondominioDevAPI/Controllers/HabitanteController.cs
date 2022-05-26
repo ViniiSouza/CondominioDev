@@ -40,5 +40,23 @@ namespace CondominioDevAPI.Controllers
             var habitantes = _habitanteAppService.GetAll();
             return Ok(habitantes);
         }
+
+        /// <summary>
+        /// Retorna uma lista de habitantes que contenham o nome informado, se não, retorna o status code 404
+        /// </summary>
+        /// 
+        /// <param name="nome"></param>
+        /// <returns>Retorna uma lista de habitantes que contenham o nome informado</returns>
+        /// <response code="200">Retorna a lista de habitantes filtrados pelo nome</response>
+        /// <response code="404">Não encontrou resultado</response>
+        [HttpGet("buscar/{{nome}}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetByName(string nome)
+        {
+            var habitantes = _habitanteAppService.GetByName(nome);
+            if (habitantes == null || habitantes.Count() == 0) return NotFound();
+            return Ok(habitantes);
+        }
     }
 }
