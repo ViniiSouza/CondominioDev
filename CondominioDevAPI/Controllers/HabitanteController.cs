@@ -68,5 +68,15 @@ namespace CondominioDevAPI.Controllers
             if (habitantes == null || habitantes.Count() == 0) return NotFound();
             return Ok(habitantes);
         }
+
+        [HttpGet("buscar/idade/{{idade}}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetByAgeBiggerThan(int idade)
+        {
+            var habitantes = _habitanteAppService.GetByAgeBiggerThan(idade);
+            if (habitantes == null || habitantes.Count() == 0) return NotFound();
+            return Ok(habitantes);
+        }
     }
 }

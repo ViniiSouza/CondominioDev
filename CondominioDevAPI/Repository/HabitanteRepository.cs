@@ -61,5 +61,10 @@ namespace CondominioDevAPI.Repository
         {
             return _context.Habitante.Where(x => x.CPF == cpf).FirstOrDefault();
         }
+
+        public IEnumerable<Habitante> GetByDateOrBefore(DateTime dataMaxima)
+        {
+            return _context.Habitante.Where(where => where.DataNascimento <= dataMaxima);
+        }
     }
 }
