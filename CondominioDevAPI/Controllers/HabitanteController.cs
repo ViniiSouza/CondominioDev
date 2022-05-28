@@ -58,5 +58,15 @@ namespace CondominioDevAPI.Controllers
             if (habitantes == null || habitantes.Count() == 0) return NotFound();
             return Ok(habitantes);
         }
+
+        [HttpGet("buscar/mes/{{mes}}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetByMonth(int mes)
+        {
+            var habitantes = _habitanteAppService.GetByMonth(mes);
+            if (habitantes == null || habitantes.Count() == 0) return NotFound();
+            return Ok(habitantes);
+        }
     }
 }
