@@ -69,5 +69,11 @@ namespace CondominioDevAPI.Service
             var habitantes = _repository.GetByDateOrBefore(dataMaxima);
             return _mapper.Map<IEnumerable<HabitanteGetDTO>>(habitantes);
         }
+
+        public HabitanteDetailDTO GetDetailsById(int id)
+        {
+            var habitante = _repository.GetById(id);
+            return _mapper.Map<HabitanteDetailDTO>(habitante);
+        }
     }
 }

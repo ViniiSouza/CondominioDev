@@ -78,5 +78,16 @@ namespace CondominioDevAPI.Controllers
             if (habitantes == null || habitantes.Count() == 0) return NotFound();
             return Ok(habitantes);
         }
+
+        [HttpGet]
+        [Route("detalhes/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetDetailsById([FromRoute] int id)
+        {
+            var habitante = _habitanteAppService.GetDetailsById(id);
+            if (habitante == null) return NotFound();
+            return Ok(habitante);
+        }
     }
 }

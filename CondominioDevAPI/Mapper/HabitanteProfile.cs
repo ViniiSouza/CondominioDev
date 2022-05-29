@@ -13,6 +13,8 @@ namespace CondominioDevAPI.Mapper
                 .ForMember(dest => dest.DataNascimento, opt => opt.MapFrom(src => DateTime.ParseExact(src.DataNascimento, "dd/MM/yyyy", null)));
 
             CreateMap<Habitante, HabitanteGetDTO>();
+
+            CreateMap<Habitante, HabitanteDetailDTO>();
         }
     }
 }
