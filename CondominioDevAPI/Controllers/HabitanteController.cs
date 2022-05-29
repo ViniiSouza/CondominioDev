@@ -26,7 +26,7 @@ namespace CondominioDevAPI.Controllers
         [HttpPost("cadastrar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult CadastrarHabitante(HabitantePostDTO habitante)
+        public IActionResult CadastrarHabitante([FromBody] HabitantePostDTO habitante)
         {
             var created = _habitanteAppService.Add(habitante);
             if (created) return StatusCode(201, habitante);
@@ -49,30 +49,33 @@ namespace CondominioDevAPI.Controllers
         /// <returns>Retorna uma lista de habitantes que contenham o nome informado</returns>
         /// <response code="200">Retorna a lista de habitantes filtrados pelo nome</response>
         /// <response code="404">Não encontrou resultado</response>
-        [HttpGet("buscar/{{nome}}")]
+        [HttpGet]
+        [Route("buscar/{nome}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetByName(string nome)
+        public IActionResult GetByName([FromRoute] string nome)
         {
             var habitantes = _habitanteAppService.GetByName(nome);
             if (habitantes == null || habitantes.Count() == 0) return NotFound();
             return Ok(habitantes);
         }
 
-        [HttpGet("buscar/mes/{{mes}}")]
+        [HttpGet]
+        [Route("buscar/mes/{mes}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetByMonth(int mes)
+        public IActionResult GetByMonth([FromRoute] int mes)
         {
             var habitantes = _habitanteAppService.GetByMonth(mes);
             if (habitantes == null || habitantes.Count() == 0) return NotFound();
             return Ok(habitantes);
         }
 
-        [HttpGet("buscar/idade/{{idade}}")]
+        [HttpGet]
+        [Route("buscar/idade/{idade}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetByAgeBiggerThan(int idade)
+        public IActionResult GetByAgeBiggerThan([FromRoute] int idade)
         {
             var habitantes = _habitanteAppService.GetByAgeBiggerThan(idade);
             if (habitantes == null || habitantes.Count() == 0) return NotFound();
