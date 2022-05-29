@@ -24,11 +24,16 @@ namespace CondominioDevAPI.Repository
             _context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var habitante = _context.Habitante.Find(id);
+            if (habitante == null)
+            {   
+                return false;
+            }
             _context.Habitante.Remove(habitante);
             _context.SaveChanges();
+            return true;
         }
 
         public Habitante GetById(int id)

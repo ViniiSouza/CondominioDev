@@ -92,5 +92,16 @@ namespace CondominioDevAPI.Controllers
             if (habitante == null) return NotFound();
             return Ok(habitante);
         }
+
+        [HttpDelete]
+        [Route("deletar/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult DeleteById([FromRoute] int id)
+        {
+            var deleted = _habitanteAppService.Delete(id);
+            if (deleted) return Ok();
+            else return NotFound();
+        }
     }
 }

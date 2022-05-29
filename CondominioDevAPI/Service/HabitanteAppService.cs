@@ -35,9 +35,9 @@ namespace CondominioDevAPI.Service
             _repository.Update(habitante);
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            _repository.Delete(id);
+            return _repository.Delete(id);
         }
 
         public Habitante GetById(int id)
