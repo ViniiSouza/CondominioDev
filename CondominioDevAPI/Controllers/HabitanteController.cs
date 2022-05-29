@@ -64,7 +64,7 @@ namespace CondominioDevAPI.Controllers
         [Route("buscar/mes/{mes}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetByMonth(int mes)
+        public IActionResult GetByMonth([FromRoute] int mes)
         {
             var habitantes = _habitanteAppService.GetByMonth(mes);
             if (habitantes == null || habitantes.Count() == 0) return NotFound();
@@ -75,7 +75,7 @@ namespace CondominioDevAPI.Controllers
         [Route("buscar/idade/{idade}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetByAgeBiggerThan(int idade)
+        public IActionResult GetByAgeBiggerThan([FromRoute] int idade)
         {
             var habitantes = _habitanteAppService.GetByAgeBiggerThan(idade);
             if (habitantes == null || habitantes.Count() == 0) return NotFound();
