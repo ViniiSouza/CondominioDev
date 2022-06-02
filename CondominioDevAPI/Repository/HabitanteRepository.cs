@@ -71,5 +71,10 @@ namespace CondominioDevAPI.Repository
         {
             return _context.Habitante.Where(where => where.DataNascimento <= dataMaxima);
         }
+
+        public Habitante MoradorComMaiorCusto()
+        {
+            return _context.Habitante.Where(where => where.Renda > 0).OrderByDescending(x => x.Renda).FirstOrDefault();
+        }
     }
 }

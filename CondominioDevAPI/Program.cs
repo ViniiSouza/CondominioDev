@@ -20,6 +20,8 @@ builder.Services.AddScoped<HabitanteRepository>();
 
 builder.Services.AddScoped<HabitanteAppService>();
 
+builder.Services.AddScoped<RelatorioFinanceiroAppService>();
+
 var mappingConfig = new MapperConfiguration(mc =>
 {
     mc.AddProfile(new HabitanteProfile());
