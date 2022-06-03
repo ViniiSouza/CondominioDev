@@ -76,5 +76,10 @@ namespace CondominioDevAPI.Repository
         {
             return _context.Habitante.Where(where => where.Renda > 0).OrderByDescending(x => x.Renda).FirstOrDefault();
         }
+
+        public List<float> GetRendaDosHabitantes()
+        {
+            return _context.Habitante.Select(select => select.Renda).ToList();
+        }
     }
 }

@@ -22,6 +22,14 @@ namespace CondominioDevAPI.Controllers
             if (morador == null) return NotFound();
             return Ok(morador);
         }
-        
+
+        [HttpGet]
+        [Route("gasto-total")]
+        public ActionResult GastoTotal()
+        {
+            var gastoTotal = _relatorioFinanceiroAppService.GetGastoTotal();
+            return Ok(gastoTotal);
+        }
+
     }
 }
