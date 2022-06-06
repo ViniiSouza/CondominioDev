@@ -1,4 +1,8 @@
+using AutoMapper;
 using CondominioDevAPI.Context;
+using CondominioDevAPI.Mapper;
+using CondominioDevAPI.Repository;
+using CondominioDevAPI.Service;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +15,21 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<CondominioDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ServerConnection")));
+
+builder.Services.AddScoped<HabitanteRepository>();
+
+builder.Services.AddScoped<HabitanteAppService>();
+
+builder.Services.AddScoped<RelatorioFinanceiroAppService>();
+
+var mappingConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new HabitanteProfile());
+});
+
+IMapper mapper = mappingConfig.CreateMapper();
+
+builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 
