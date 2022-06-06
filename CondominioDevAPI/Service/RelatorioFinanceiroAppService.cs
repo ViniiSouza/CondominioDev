@@ -31,5 +31,24 @@ namespace CondominioDevAPI.Service
             }
             return somaTotal;
         }
+
+        public float OrcamentoCondominio()
+        {
+            return _repository.GetOrcamentoCondominio();
+        }
+
+        public string DiferencaOrcamentoEGasto()
+        {
+            float rendaTotal = 0;
+            var listaRendas = _repository.GetRendaDosHabitantes();
+            var numeroHabitantes = listaRendas.Count;
+            listaRendas.ForEach(each =>
+            {
+                rendaTotal += each;
+            });
+            var valorCondominio = _repository.GetOrcamentoCondominio() * numeroHabitantes;
+            var gastoTotal = rendaTotal - valorCondominio;
+            return $"A renda total do condomínio é de R$ {rendaTotal}. Descontando o valor de R$ 450 para cada habitante pelo orçamento do condomínio, o valor de renda final é de R$ {gastoTotal}.";
+        }
     }
 }

@@ -31,5 +31,20 @@ namespace CondominioDevAPI.Controllers
             return Ok(gastoTotal);
         }
 
+        [HttpGet]
+        [Route("orcamento-condominio")]
+        public ActionResult OrcamentoCondominio()
+        {
+            var orcamentoCondominio = _relatorioFinanceiroAppService.OrcamentoCondominio();
+            return Ok($"O orçamento atual do condomínio é de R$ {orcamentoCondominio} por habitante. Esse valor inclui o valor do condomínio e a conta de luz!");
+        }
+
+        [HttpGet]
+        [Route("orcamento-gasto")]
+        public ActionResult DiferencaOrcamentoEGasto()
+        {
+            return Ok(_relatorioFinanceiroAppService.DiferencaOrcamentoEGasto());
+        }
+
     }
 }

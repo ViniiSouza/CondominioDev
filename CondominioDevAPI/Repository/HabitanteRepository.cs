@@ -81,5 +81,10 @@ namespace CondominioDevAPI.Repository
         {
             return _context.Habitante.Select(select => select.Renda).ToList();
         }
+
+        public float GetOrcamentoCondominio()
+        {
+            return 450;
+        }
     }
 }
