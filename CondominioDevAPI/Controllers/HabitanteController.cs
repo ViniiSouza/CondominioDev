@@ -33,6 +33,10 @@ namespace CondominioDevAPI.Controllers
             else return StatusCode(400, "Já há um habitante com este CPF");
         }
 
+        /// <summary>
+        ///  Retorna todos os habitantes
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetAll()
@@ -60,6 +64,11 @@ namespace CondominioDevAPI.Controllers
             return Ok(habitantes);
         }
 
+        /// <summary>
+        /// Retorna a lista de habitantes que nasceram no mês informado, se não encontrar nenhum, retorna o status code 404
+        /// </summary>
+        /// <param name="mes"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("buscar/mes/{mes}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -71,6 +80,11 @@ namespace CondominioDevAPI.Controllers
             return Ok(habitantes);
         }
 
+        /// <summary>
+        /// Retorna a lista de habitantes com idade maior que a informada, se não encontrar nenhum, retorna o status code 404
+        /// </summary>
+        /// <param name="idade"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("buscar/idade/{idade}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -82,6 +96,11 @@ namespace CondominioDevAPI.Controllers
             return Ok(habitantes);
         }
 
+        /// <summary>
+        /// Retorna o habitante com o id informado, se não encontrar nenhum, retorna o status code 404
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("detalhes/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -93,6 +112,11 @@ namespace CondominioDevAPI.Controllers
             return Ok(habitante);
         }
 
+        /// <summary>
+        /// Deleta o habitante do id informado, se não deletar, retorna o status code 404
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("deletar/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
